@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>redis</title>
-    <url>https://lhw0828.github.io/2024/07/06/redis/</url>
+    <url>/2024/07/06/redis/</url>
     <content><![CDATA[<h2 id="1-Redis项目中的场景"><a href="#1-Redis项目中的场景" class="headerlink" title="1. Redis项目中的场景"></a>1. Redis项目中的场景</h2><ul>
 <li>缓存</li>
 <li>分布式锁</li>
