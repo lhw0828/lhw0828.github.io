@@ -151,6 +151,65 @@
       </tags>
   </entry>
   <entry>
+    <title>linux安装问题</title>
+    <url>/2024/07/18/linux%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="linux安装问题"><a href="#linux安装问题" class="headerlink" title="linux安装问题"></a>linux安装问题</h2><h3 id="一-yum无法下载软件"><a href="#一-yum无法下载软件" class="headerlink" title="一. yum无法下载软件"></a>一. yum无法下载软件</h3><ol>
+<li>配置阿里云镜像</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>清理<code>yum</code>缓存</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum clean all</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>更新<code>yum</code>缓存</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum makecache</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>更新系统</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo yum update -y</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>配置DNS信息</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 可以先查看/etc/resolv.conf内容再配置</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nameserver 8.8.8.8&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/resolv.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;nameserver 8.8.4.4&quot;</span> | sudo <span class="built_in">tee</span> -a /etc/resolv.conf</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>检测和重启网络服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart network</span><br><span class="line">sudo systemctl status network</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、docker无法使用的问题"><a href="#二、docker无法使用的问题" class="headerlink" title="二、docker无法使用的问题"></a>二、docker无法使用的问题</h3><p>docker的安装参考<a href="https://yeasy.gitbook.io/docker_practice/install/centos">这里</a></p>
+<p>若按照上面教程也无法安装， 使用国内镜像源安装</p>
+<ol>
+<li><p>先把安装脚本 (install_docker.sh)下载到本地</p>
+<p><a href="https://r3f3348v36.feishu.cn/file/PfDwbL4KDoKKBixqmXDccApqnje">install_docker.sh</a></p>
+</li>
+<li><p>在终端执行下方命令</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash install_docker.sh --mirror Aliyun</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>docker加入用户组</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo groupadd docker</span><br><span class="line">sudo usermod -aG docker <span class="variable">$&#123;USER&#125;</span></span><br><span class="line">sudo systemctl restart docker </span><br><span class="line">newgrp docker</span><br><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>修改国内镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">## 参考：https://github.com/cmliu/CF-Workers-docker.io</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> -p /etc/docker</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /etc/docker</span><br><span class="line"></span><br><span class="line">sudo vim daemon.json</span><br><span class="line"><span class="comment">#输入以下内容</span></span><br><span class="line">&#123;  </span><br><span class="line">    <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://docker.fxxk.dedyn.io&quot;</span>] </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启docker服务</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br><span class="line"><span class="comment">#试验是否可以正常拉取镜像,若可以拉取则设置成功</span></span><br><span class="line">docker pull ubuntu:20.04</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Java面试</title>
     <url>/2024/07/09/java-mianshi/</url>
     <content><![CDATA[<h2 id="Java面试题"><a href="#Java面试题" class="headerlink" title="Java面试题"></a>Java面试题</h2><h3 id="一-Java基础"><a href="#一-Java基础" class="headerlink" title="一. Java基础"></a>一. Java基础</h3><h4 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h4>]]></content>
