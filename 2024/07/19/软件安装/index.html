@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java面试," />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1. Redis项目中的场景 缓存 分布式锁  2. 如果发生缓存穿透、击穿、雪崩，该如何解决缓存穿透：查询一个不存在的数据，mysql查询不到数据也不会直接写入到缓存，导致每次请求都会查数据库 解决方案：  缓存空数据，查询返回的数据为空，仍把这空结果进行缓存  优点：简单 缺点：消耗内存，可能会发生不一致的问题（设置短期过期时间）   布隆过滤器  优点：内存占用少，没有多余的key 缺点：实">
+<meta name="description" content="1、安装mysql已安装或能访问忽略 第一步：拉取镜像  docker pull mysql:8.0.30  第二步：启动  docker run –name gmalldocker_mysql –restart&#x3D;always -v &#x2F;home&#x2F;ljaer&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql -p 3306:3306 -e">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis">
-<meta property="og:url" content="https://lhw0828.github.io.git/2024/07/06/redis/index.html">
+<meta property="og:title" content="软件安装">
+<meta property="og:url" content="https://lhw0828.github.io.git/2024/07/19/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="小凡的耿">
-<meta property="og:description" content="1. Redis项目中的场景 缓存 分布式锁  2. 如果发生缓存穿透、击穿、雪崩，该如何解决缓存穿透：查询一个不存在的数据，mysql查询不到数据也不会直接写入到缓存，导致每次请求都会查数据库 解决方案：  缓存空数据，查询返回的数据为空，仍把这空结果进行缓存  优点：简单 缺点：消耗内存，可能会发生不一致的问题（设置短期过期时间）   布隆过滤器  优点：内存占用少，没有多余的key 缺点：实">
+<meta property="og:description" content="1、安装mysql已安装或能访问忽略 第一步：拉取镜像  docker pull mysql:8.0.30  第二步：启动  docker run –name gmalldocker_mysql –restart&#x3D;always -v &#x2F;home&#x2F;ljaer&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql -p 3306:3306 -e">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-06T02:37:28.000Z">
-<meta property="article:modified_time" content="2024-07-06T06:09:08.823Z">
+<meta property="article:published_time" content="2024-07-19T08:25:48.000Z">
+<meta property="article:modified_time" content="2024-07-19T08:30:45.439Z">
 <meta property="article:author" content="lhw">
-<meta property="article:tag" content="Java面试">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://lhw0828.github.io.git/2024/07/06/redis/"/>
+  <link rel="canonical" href="https://lhw0828.github.io.git/2024/07/19/软件安装/"/>
 
 
 
 
 
-  <title>redis | 小凡的耿</title>
+  <title>软件安装 | 小凡的耿</title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lhw0828.github.io.git/2024/07/06/redis/">
+    <link itemprop="mainEntityOfPage" href="https://lhw0828.github.io.git/2024/07/19/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -314,15 +314,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">redis</h1>
+          <h1 class="post-title" itemprop="name headline">软件安装</h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-                <i class="fa fa-thumb-tack"></i>
-                <font color=7D26CD>置顶</font>
-                <span class="post-meta-divider">|</span>
             
 
             
@@ -332,8 +328,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-07-06T10:37:28+08:00">
-                2024-07-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-07-19T16:25:48+08:00">
+                2024-07-19
               </time>
             
 
@@ -364,7 +360,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.7k
+                  624
                 </span>
               
 
@@ -380,7 +376,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  9
+                  2
                 </span>
               
             </div>
@@ -401,148 +397,111 @@
       
 
       
-        <h2 id="1-Redis项目中的场景"><a href="#1-Redis项目中的场景" class="headerlink" title="1. Redis项目中的场景"></a>1. Redis项目中的场景</h2><ul>
-<li>缓存</li>
-<li>分布式锁</li>
-</ul>
-<h2 id="2-如果发生缓存穿透、击穿、雪崩，该如何解决"><a href="#2-如果发生缓存穿透、击穿、雪崩，该如何解决" class="headerlink" title="2. 如果发生缓存穿透、击穿、雪崩，该如何解决"></a>2. 如果发生缓存穿透、击穿、雪崩，该如何解决</h2><p>缓存穿透：查询一个不存在的数据，mysql查询不到数据也不会直接写入到缓存，导致每次请求都会查数据库</p>
-<p>解决方案：</p>
-<ul>
-<li><p>缓存空数据，查询返回的数据为空，仍把这空结果进行缓存</p>
-<ul>
-<li>优点：简单</li>
-<li>缺点：消耗内存，可能会发生不一致的问题（设置短期过期时间）</li>
-</ul>
-</li>
-<li><p>布隆过滤器</p>
-<ul>
-<li>优点：内存占用少，没有多余的key</li>
-<li>缺点：实现复杂，存在误判</li>
-</ul>
-<p>  布隆过滤器是由一个位数组（bitmap）和一组哈希函数组成</p>
-<ul>
-<li>位数组：初始时，所有位都为0，每个元素经过多次哈希函数处理后设为1</li>
-<li>误判率：数组大小决定，数组小误判率大，反之。</li>
-</ul>
-</li>
-</ul>
-<p>缓存击穿：给某一个key设置了过期时间，当key过期的时候，恰好这时间点对这个key有大量的并发请求过来，这些并发的请求可能会瞬间把DB压垮</p>
-<p>解决方案：</p>
-<ul>
-<li><p>互斥锁</p>
-<p>  当缓存失效时，不立即去load db，先使用setnx设置一个互斥锁，当操作成功返回后再进行load db的操作并回设缓存，否则重试get缓存的方法</p>
-</li>
-<li><p>逻辑过期</p>
-<p>  设置key时，设置一个过期时间字段存入缓存中，不给当前key设置过期时间；当查询的时候，从redis取出数据后判断时间是否过期；如果过期则开通另外一个线程进行数据同步，当前线程正常返回数据，但这个数据不是最新的</p>
-</li>
-</ul>
-<p>缓存雪崩：指在同一时段大量的缓存key同时失效或者Redis服务宕机，导致大量请求到达数据库，带来巨大压力。</p>
-<p>解决方案：</p>
-<ul>
-<li>给不同的key的TTL添加随机值</li>
-</ul>
-<h2 id="3-双写一致性（redis与mysql如何同步）"><a href="#3-双写一致性（redis与mysql如何同步）" class="headerlink" title="3. 双写一致性（redis与mysql如何同步）"></a>3. 双写一致性（redis与mysql如何同步）</h2><p>缓存中的语义结果要跟实际的语义结果保持强一致性</p>
-<p>双写一致性：当修改了数据的数据也要同时更新缓存的数据，缓存和数据库的数据要保持一致</p>
-<ul>
-<li>读操作：缓存命中，直接返回；缓存未命中查询数据库，写入缓存，设定超时时间</li>
-<li>写操作：延时双删</li>
-</ul>
-<p>我们采用的时redission实现的读写锁，在读的时候添加共享锁，保证读读不互斥。当我们更新数据的时候，添加互斥锁；这样就保证在写时候不会让其他线程读数据。这里面的读方法和写方法都是同一把锁</p>
-<p>延时双删：在写操作时，先删去缓存中的数据，然后更新数据库，最后再延时删除缓存中的数据，但这个延时时间不太好确定，在延时时候会出现脏数据，并不能保证强一致性。</p>
-<p>保证可用性：采用阿里的canal组件实现数据同步；不需要更改业务代码，部署一个canal服务。然后canel会伪装成一个mysql的从节点；当mysql数据更新后，canal会读取binlog的数据，然后再通过canal的客户端获取到数据，更新缓存就可以了。</p>
-<h2 id="4-redis的数据持久化"><a href="#4-redis的数据持久化" class="headerlink" title="4. redis的数据持久化"></a>4. redis的数据持久化</h2><ul>
-<li><p>RDB：Redis的数据快照，将内存中的所有数据都记录到磁盘中</p>
-<p>  bgsave：redis.conf</p>
-<p>  bgsave开始时会fork主进程得到子进程，子进程共享主进程的内存数据。完成fork后读取内存数据并写入RDB文件。fork采用的时copy-on-write技术，当主进程执行读操作时，则访问共享内存；当主进程执行写操作时，则会拷贝一份数据，执行写操作。</p>
-</li>
-<li><p>AOF：追加文件。redis每一个写命令都会记录在AOF文件中（采用everysec）</p>
-<p>  bgrewriteaof命令，可以让AOF文件执行重写功能</p>
-</li>
-</ul>
-<h2 id="5-redis的数据过期策略（删除策略）"><a href="#5-redis的数据过期策略（删除策略）" class="headerlink" title="5. redis的数据过期策略（删除策略）"></a>5. redis的数据过期策略（删除策略）</h2><p><strong>惰性删除，定期删除</strong></p>
-<p><strong>惰性删除</strong>：设置该key过期时间后，我们不去管它，当需要该key时，我们在检查其是否过期，如果过期，我们就删掉它，反之返回该key</p>
-<p><strong>定期删除</strong>：每隔一段时间，我们就对一些key进行检查，删除里面过期的key(从一定数量的数据库中取出一定数量的随机key进行检查，并删除其中的过期key)</p>
-<ul>
-<li>定时任务：执行频率默认未为10hz，每次不超过25ms</li>
-<li>fast模式：执行频率不固定，但两次间隔不低于2ms，每次耗时不超过1ms</li>
-</ul>
-<p>Redis的过期删除策略：惰性删除+定期删除</p>
-<h2 id="6-假如缓存过多，内存是有限的，内存被占满了怎么办？（数据淘汰策略）"><a href="#6-假如缓存过多，内存是有限的，内存被占满了怎么办？（数据淘汰策略）" class="headerlink" title="6. 假如缓存过多，内存是有限的，内存被占满了怎么办？（数据淘汰策略）"></a>6. 假如缓存过多，内存是有限的，内存被占满了怎么办？（数据淘汰策略）</h2><p><strong>数据的淘汰策略</strong>：当Redis中的内存不够用时，此时在向Redis中添加新的key，那么Redis就会按照某一种规则将内存中的数据删除掉，这种数据的删除规则被称之为内存的淘汰策略。</p>
-<p>redis提供了多种数据淘汰策略，默认是noeviction，不删除任何数据，内部不足直接报错。</p>
-<p>LRU：最近最少使用，当前时间减去最后一次的访问时间</p>
-<p>LFU：最近最少频率使用，会统计每个key的访问频率</p>
-<p>我们在项目中设置的时allkeys-lru，挑选最近最少使用的数据淘汰，保证热点数据</p>
-<h2 id="7-redis分布式锁，是如何实现的？"><a href="#7-redis分布式锁，是如何实现的？" class="headerlink" title="7. redis分布式锁，是如何实现的？"></a>7. redis分布式锁，是如何实现的？</h2><p>Redis实现分布式锁主要利用Redis的<strong>setnx</strong>命令。setnx是SET if not exists(如果不存在，则 SET)的简写。</p>
-<p>由于redis是单线程的，用了命令后，只能由一个客户端对某一个key设置值，在没有过期或删除key的时候是其他客户端不能设置这个key的。（redisson+lua脚本）</p>
-<p>redis实现分布式锁的有效时长是采用redis的一个框架redisson实现的。在redisson中需要手动加锁，并且可以控制锁的失效时间和等待时间，当锁住的一个业务没有执行完成的时候，在redisson里面引入了一个看门狗机制，每隔一段时间检查当前业务是否还持有锁，如果持有就增加锁的持有时间，当业务完成之后释放锁</p>
-<h2 id="7-redis集群有哪些"><a href="#7-redis集群有哪些" class="headerlink" title="7. redis集群有哪些"></a>7. redis集群有哪些</h2><ul>
-<li><p>主从复制</p>
-<p>  单节点的redis的并发能力是有限的，为了提高并发能力就需要搭建主从集群，实现读写分离</p>
-<p>  主从同步原理：</p>
-<ul>
-<li>全量同步<ol>
-<li>从节点请求主节点同步数据（replication id、 offset ）</li>
-<li>主节点判断是否是第一次请求，是第一次就与从节点同步版本信息（replication id和offset）</li>
-<li>主节点执行bgsave，生成rdb文件后，发送给从节点去执行</li>
-<li>在rdb生成执行期间，主节点会以命令的方式记录到缓冲区（一个日志文件）</li>
-<li>把生成之后的命令日志文件发送给从节点进行同步</li>
-</ol>
-</li>
-<li>增量同步<ol>
-<li>从节点请求主节点同步数据，主节点判断不是第一次请求，不是第一次就获取从节点的offset值</li>
-<li>主节点从命令日志中获取offset值之后的数据，发送给从节点进行数据同步</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>哨兵模式</p>
-<p>  Redis提供了哨兵（Sentinel）机制来实现主从集群的自动故障恢复。作用如下</p>
-<ul>
-<li><p>监控：sentinel会检查master和slave是否按预期工作</p>
-<p>  sentinel会基于心跳机制检测服务状态，每个1秒向集群的每个实例发送ping命令</p>
-<p>  主观下线： 如果某个sentinel节点发现某实例未在规定时间内响应，则认为该实例<strong>主观下线</strong></p>
-<p>  客观下线： 若超过指定数量的sentinel都认为该实例主观下线，则该实例客观下线</p>
-</li>
-<li><p>通知：sentinel充当redis客户端的服务发现来源，当集群发生故障转移时，会将最新信息推送给redis客户端</p>
-</li>
-<li><p>自动故障恢复：如果master故障，sentinel会将一个slave提升为master。当故障实例恢复后也以薪的master为主</p>
-</li>
-</ul>
-</li>
-</ul>
-<p><strong>哨兵选主规则</strong></p>
+        <h2 id="1、安装mysql"><a href="#1、安装mysql" class="headerlink" title="1、安装mysql"></a>1、安装mysql</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull mysql:8.0.30</p>
+</blockquote>
+<p>第二步：启动</p>
+<blockquote>
+<p>docker run –name gmalldocker_mysql –restart&#x3D;always -v &#x2F;home&#x2F;ljaer&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -d mysql:8.0.30</p>
+</blockquote>
+<p>第三步：测试mysql</p>
+<p>进入容器：</p>
+<blockquote>
+<p>docker exec -it gmalldocker_mysql &#x2F;bin&#x2F;bash</p>
+</blockquote>
+<p>登录mysql：</p>
+<blockquote>
+<p>mysql -u root -p</p>
+</blockquote>
+<blockquote>
+<p>root</p>
+</blockquote>
+<p>如果顺利进入，安装成功</p>
+<p><strong>注意：mysql的账号密码为：root&#x2F;root，配置文件内要对齐</strong></p>
+<h2 id="2、安装rabbitmq"><a href="#2、安装rabbitmq" class="headerlink" title="2、安装rabbitmq"></a>2、安装rabbitmq</h2><p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull rabbitmq:3.12.0-management</p>
+</blockquote>
+<p>第二步：启动</p>
+<blockquote>
+<p>docker run -d –name&#x3D;rabbitmq –restart&#x3D;always -p 5672:5672 -p 15672:15672 rabbitmq:3.12.0-management  </p>
+</blockquote>
+<p>第三步：安装延迟队列插件 </p>
 <ol>
-<li>判断主从节点断开时间长短，如超过指定值就排除该从节点</li>
-<li>判断从节点的slave-priority值，越小优先级越高</li>
-<li>判断slave节点的offset值，越大优先级越高</li>
-<li>判断slave的id大小</li>
+<li>首先下载rabbitmq_delayed_message_exchange-3.12.0.ez文件上传到RabbitMQ所在服务器，下载地址：<a target="_blank" rel="noopener" href="https://www.rabbitmq.com/community-plugins.html">https://www.rabbitmq.com/community-plugins.html</a></li>
+<li>切换到插件所在目录，执行 docker cp rabbitmq_delayed_message_exchange-3.12.0.ez rabbitmq :&#x2F;plugins 命令，将刚插件拷贝到容器内plugins目录下</li>
+<li>执行 docker exec -it rabbitmq &#x2F;bin&#x2F;bash 命令进入到容器内部，并 cd plugins 进入plugins目录</li>
+<li>执行 ls -l|grep delay  命令查看插件是否copy成功</li>
+<li>在容器内plugins目录下，执行 rabbitmq-plugins enable rabbitmq_delayed_message_exchange  命令启用插件</li>
+<li>exit命令退出RabbitMQ容器内部，然后执行 docker restart rabbitmq 命令重启RabbitMQ容器</li>
 </ol>
-<p><strong>redis集群的脑裂问题</strong></p>
-<p>集群脑裂是由于主节点和从节点和sentinel处于不同的网络分区，使得sentinel没有能够心跳感知到主节点，所以通过选举的方式提升了一个从节点为主，这样就存在了两个master，就像大脑分裂了一样，这样会导致客户端还在老的主节点那里写入数据，新节点无法同步数据，当网络恢复后，sentinel会将老的主节点降为从节点，这时再从新master同步数据，就会导致数据丢失</p>
-<p><strong>解决</strong>：我们可以修改redis的配置，可以设置最少的从节点数量以及缩短主从数据同步的延迟时间，达不到要求就拒绝请求，就可以避免大量的数据丢失</p>
-<ul>
-<li>分片集群</li>
-</ul>
-<h2 id="8-Redis是单线程的，但是为什么还那么快"><a href="#8-Redis是单线程的，但是为什么还那么快" class="headerlink" title="8. Redis是单线程的，但是为什么还那么快"></a>8. Redis是单线程的，但是为什么还那么快</h2><ul>
-<li>Redis是纯内存操作，执行速度非常快</li>
-<li>采用单线程，避免不必要的上下文切换可竞争条件</li>
-<li>使用I&#x2F;O多路复用模型，非阻塞IO</li>
-</ul>
-<p>能解释一下I&#x2F;O多路复用模型？</p>
-<p>Redis是纯内存操作，执行速度非常快，它的性能瓶颈是网络延迟而不是执行速度， I&#x2F;O多路复用模型主要就是实现了高效的网络请求</p>
-<p><strong>IO多路复用</strong>：是利用单个线程来同时监听多个Socket ，并在某个Socket可读、可写时得到通知，从而避免无效的等待，充分利用CPU资源。不过监听Socket的方式、通知的方式又有多种实现，常见的有：</p>
-<ul>
-<li>select</li>
-<li>poll</li>
-<li>epoll</li>
-</ul>
-<p>2.<strong>Redis网络模型</strong></p>
-<p>就是使用I&#x2F;O多路复用结合事件的处理器来应对多个Socket请求</p>
-<ul>
-<li>连接应答处理器</li>
-<li>命令回复处理器，在Redis6.0之后，为了提升更好的性能，使用了多线程来处理回复事件</li>
-<li>命令请求处理器，在Redis6.0之后，将命令的转换使用了多线程，增加命令转换速度，在命令执行的时候，依然是单线程</li>
-</ul>
+<h2 id="3、安装redis"><a href="#3、安装redis" class="headerlink" title="3、安装redis"></a>3、安装redis</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull redis:7.0.10</p>
+</blockquote>
+<p>第二步：启动</p>
+<blockquote>
+<p>docker run –name&#x3D;gmalldocker_redis -d -p 6379:6379  –restart&#x3D;always redis</p>
+</blockquote>
+<h2 id="4、安装nacos"><a href="#4、安装nacos" class="headerlink" title="4、安装nacos"></a>4、安装nacos</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull nacos&#x2F;nacos-server:v2.1.1</p>
+</blockquote>
+<p>第二步：启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-e MODE=standalone \</span><br><span class="line">-p 8848:8848 \</span><br><span class="line">-p 9848:9848 \</span><br><span class="line">-p 9849:9849 \</span><br><span class="line">--name nacos2.1.1 \</span><br><span class="line">--restart=always \</span><br><span class="line">nacos/nacos-server:v2.1.1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、安装minio"><a href="#5、安装minio" class="headerlink" title="5、安装minio"></a>5、安装minio</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull minio&#x2F;minio</p>
+</blockquote>
+<p>第二步：启动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 9000:9000 \</span><br><span class="line">-p 9001:9001 \</span><br><span class="line">--name=gmalldocker_minio \</span><br><span class="line">-d --restart=always \</span><br><span class="line">-e &quot;MINIO_ROOT_USER=admin&quot; \</span><br><span class="line">-e &quot;MINIO_ROOT_PASSWORD=admin123456&quot; \</span><br><span class="line">-v /home/data:/data \</span><br><span class="line">-v /home/config:/root/.minio \</span><br><span class="line">minio/minio server /data --console-address &quot;:9001&quot;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问：<a target="_blank" rel="noopener" href="http://ip:9001/minio/login%EF%BC%8C%E7%99%BB%E5%BD%95%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81admin/admin123456%E7%99%BB%E5%BD%95" title="http://IP:9001/minio/login，登录使用自定义账户密码admin/admin123456登录">http://IP:9001/minio/login，登录使用自定义账户密码admin/admin123456登录</a></p>
+<p><strong>注意</strong>：文件上传时，需要调整一下linux 服务器的时间与windows 时间一致！</p>
+<blockquote>
+<p>第一步：安装ntp服务</p>
+<blockquote>
+<p>yum -y install ntp</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第二步：开启开机启动服务</p>
+<blockquote>
+<p>systemctl enable ntpd</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第三步：启动服务</p>
+<blockquote>
+<p>systemctl start ntpd</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第四步：更改时区</p>
+<blockquote>
+<p>timedatectl set-timezone Asia&#x2F;Shanghai</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第五步：启用ntp同步</p>
+<blockquote>
+<p>timedatectl set-ntp yes</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第六步：同步时间</p>
+<blockquote>
+<p>ntpq -p</p>
+</blockquote>
+</blockquote>
 
       
     </div>
@@ -560,7 +519,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java%E9%9D%A2%E8%AF%95/" rel="tag"># Java面试</a>
+            <a href="/tags/linux/" rel="tag"># linux</a>
           
         </div>
       
@@ -573,15 +532,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2024/07/18/linux%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/" rel="next" title="linux安装问题">
+                <i class="fa fa-chevron-left"></i> linux安装问题
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2024/07/09/java-mianshi/" rel="prev" title="Java面试">
-                Java面试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -704,7 +663,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Redis%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%9A%84%E5%9C%BA%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">1. Redis项目中的场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A6%82%E6%9E%9C%E5%8F%91%E7%94%9F%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F%E3%80%81%E5%87%BB%E7%A9%BF%E3%80%81%E9%9B%AA%E5%B4%A9%EF%BC%8C%E8%AF%A5%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><span class="nav-number">2.</span> <span class="nav-text">2. 如果发生缓存穿透、击穿、雪崩，该如何解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%8F%8C%E5%86%99%E4%B8%80%E8%87%B4%E6%80%A7%EF%BC%88redis%E4%B8%8Emysql%E5%A6%82%E4%BD%95%E5%90%8C%E6%AD%A5%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3. 双写一致性（redis与mysql如何同步）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-redis%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-number">4.</span> <span class="nav-text">4. redis的数据持久化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-redis%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E7%AD%96%E7%95%A5%EF%BC%88%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">5. redis的数据过期策略（删除策略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E5%81%87%E5%A6%82%E7%BC%93%E5%AD%98%E8%BF%87%E5%A4%9A%EF%BC%8C%E5%86%85%E5%AD%98%E6%98%AF%E6%9C%89%E9%99%90%E7%9A%84%EF%BC%8C%E5%86%85%E5%AD%98%E8%A2%AB%E5%8D%A0%E6%BB%A1%E4%BA%86%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%EF%BC%88%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">6. 假如缓存过多，内存是有限的，内存被占满了怎么办？（数据淘汰策略）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%EF%BC%8C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7. redis分布式锁，是如何实现的？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-redis%E9%9B%86%E7%BE%A4%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">8.</span> <span class="nav-text">7. redis集群有哪些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Redis%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84%EF%BC%8C%E4%BD%86%E6%98%AF%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E9%82%A3%E4%B9%88%E5%BF%AB"><span class="nav-number">9.</span> <span class="nav-text">8. Redis是单线程的，但是为什么还那么快</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85mysql"><span class="nav-number">1.</span> <span class="nav-text">1、安装mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85rabbitmq"><span class="nav-number">2.</span> <span class="nav-text">2、安装rabbitmq</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85redis"><span class="nav-number">3.</span> <span class="nav-text">3、安装redis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85nacos"><span class="nav-number">4.</span> <span class="nav-text">4、安装nacos</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E5%AE%89%E8%A3%85minio"><span class="nav-number">5.</span> <span class="nav-text">5、安装minio</span></a></li></ol></div>
             
 
           </div>

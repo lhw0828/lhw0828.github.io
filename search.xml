@@ -151,6 +151,119 @@
       </tags>
   </entry>
   <entry>
+    <title>软件安装</title>
+    <url>/2024/07/19/%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="1、安装mysql"><a href="#1、安装mysql" class="headerlink" title="1、安装mysql"></a>1、安装mysql</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull mysql:8.0.30</p>
+</blockquote>
+<p>第二步：启动</p>
+<blockquote>
+<p>docker run –name gmalldocker_mysql –restart&#x3D;always -v &#x2F;home&#x2F;ljaer&#x2F;mysql:&#x2F;var&#x2F;lib&#x2F;mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD&#x3D;root -d mysql:8.0.30</p>
+</blockquote>
+<p>第三步：测试mysql</p>
+<p>进入容器：</p>
+<blockquote>
+<p>docker exec -it gmalldocker_mysql &#x2F;bin&#x2F;bash</p>
+</blockquote>
+<p>登录mysql：</p>
+<blockquote>
+<p>mysql -u root -p</p>
+</blockquote>
+<blockquote>
+<p>root</p>
+</blockquote>
+<p>如果顺利进入，安装成功</p>
+<p><strong>注意：mysql的账号密码为：root&#x2F;root，配置文件内要对齐</strong></p>
+<h2 id="2、安装rabbitmq"><a href="#2、安装rabbitmq" class="headerlink" title="2、安装rabbitmq"></a>2、安装rabbitmq</h2><p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull rabbitmq:3.12.0-management</p>
+</blockquote>
+<p>第二步：启动</p>
+<blockquote>
+<p>docker run -d –name&#x3D;rabbitmq –restart&#x3D;always -p 5672:5672 -p 15672:15672 rabbitmq:3.12.0-management  </p>
+</blockquote>
+<p>第三步：安装延迟队列插件 </p>
+<ol>
+<li>首先下载rabbitmq_delayed_message_exchange-3.12.0.ez文件上传到RabbitMQ所在服务器，下载地址：<a href="https://www.rabbitmq.com/community-plugins.html">https://www.rabbitmq.com/community-plugins.html</a></li>
+<li>切换到插件所在目录，执行 docker cp rabbitmq_delayed_message_exchange-3.12.0.ez rabbitmq :&#x2F;plugins 命令，将刚插件拷贝到容器内plugins目录下</li>
+<li>执行 docker exec -it rabbitmq &#x2F;bin&#x2F;bash 命令进入到容器内部，并 cd plugins 进入plugins目录</li>
+<li>执行 ls -l|grep delay  命令查看插件是否copy成功</li>
+<li>在容器内plugins目录下，执行 rabbitmq-plugins enable rabbitmq_delayed_message_exchange  命令启用插件</li>
+<li>exit命令退出RabbitMQ容器内部，然后执行 docker restart rabbitmq 命令重启RabbitMQ容器</li>
+</ol>
+<h2 id="3、安装redis"><a href="#3、安装redis" class="headerlink" title="3、安装redis"></a>3、安装redis</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull redis:7.0.10</p>
+</blockquote>
+<p>第二步：启动</p>
+<blockquote>
+<p>docker run –name&#x3D;gmalldocker_redis -d -p 6379:6379  –restart&#x3D;always redis</p>
+</blockquote>
+<h2 id="4、安装nacos"><a href="#4、安装nacos" class="headerlink" title="4、安装nacos"></a>4、安装nacos</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull nacos&#x2F;nacos-server:v2.1.1</p>
+</blockquote>
+<p>第二步：启动</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-e MODE=standalone \</span><br><span class="line">-p 8848:8848 \</span><br><span class="line">-p 9848:9848 \</span><br><span class="line">-p 9849:9849 \</span><br><span class="line">--name nacos2.1.1 \</span><br><span class="line">--restart=always \</span><br><span class="line">nacos/nacos-server:v2.1.1</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5、安装minio"><a href="#5、安装minio" class="headerlink" title="5、安装minio"></a>5、安装minio</h2><p>已安装或能访问忽略</p>
+<p>第一步：拉取镜像</p>
+<blockquote>
+<p>docker pull minio&#x2F;minio</p>
+</blockquote>
+<p>第二步：启动</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-p 9000:9000 \</span><br><span class="line">-p 9001:9001 \</span><br><span class="line">--name=gmalldocker_minio \</span><br><span class="line">-d --restart=always \</span><br><span class="line">-e &quot;MINIO_ROOT_USER=admin&quot; \</span><br><span class="line">-e &quot;MINIO_ROOT_PASSWORD=admin123456&quot; \</span><br><span class="line">-v /home/data:/data \</span><br><span class="line">-v /home/config:/root/.minio \</span><br><span class="line">minio/minio server /data --console-address &quot;:9001&quot;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器访问：<a href="http://ip:9001/minio/login%EF%BC%8C%E7%99%BB%E5%BD%95%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81admin/admin123456%E7%99%BB%E5%BD%95" title="http://IP:9001/minio/login，登录使用自定义账户密码admin/admin123456登录">http://IP:9001/minio/login，登录使用自定义账户密码admin/admin123456登录</a></p>
+<p><strong>注意</strong>：文件上传时，需要调整一下linux 服务器的时间与windows 时间一致！</p>
+<blockquote>
+<p>第一步：安装ntp服务</p>
+<blockquote>
+<p>yum -y install ntp</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第二步：开启开机启动服务</p>
+<blockquote>
+<p>systemctl enable ntpd</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第三步：启动服务</p>
+<blockquote>
+<p>systemctl start ntpd</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第四步：更改时区</p>
+<blockquote>
+<p>timedatectl set-timezone Asia&#x2F;Shanghai</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第五步：启用ntp同步</p>
+<blockquote>
+<p>timedatectl set-ntp yes</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>第六步：同步时间</p>
+<blockquote>
+<p>ntpq -p</p>
+</blockquote>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>linux安装问题</title>
     <url>/2024/07/18/linux%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h2 id="linux安装问题"><a href="#linux安装问题" class="headerlink" title="linux安装问题"></a>linux安装问题</h2><h3 id="一-yum无法下载软件"><a href="#一-yum无法下载软件" class="headerlink" title="一. yum无法下载软件"></a>一. yum无法下载软件</h3><ol>
